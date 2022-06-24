@@ -1,0 +1,85 @@
+body {
+    background-color: #f6eedf;
+    overflow: hidden;
+     display: flex;
+     align-items: center;
+     justify-content: center; 
+   }
+   
+   body,
+   html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+   }
+   
+   h1 {
+       font-size: 5rem;
+     font-family: 'Paytone One', sans-serif;
+   }
+   
+   svg {
+       visibility: hidden;
+       position: absolute;
+   }
+   
+   @keyframes rotateUp {
+       0%{
+           transform: translate(0, 90%) rotateX(-90deg);
+           transform-origin: top center;
+       }
+       50%{
+           transform: translate(0, 0) rotateX(0deg);
+           transform-origin: center center;
+       }
+       100%{
+           transform: translate(0, -90%) rotateX(90deg);
+           transform-origin: bottom center;
+       }
+   }
+   
+   .word {
+       display: inline-block;
+       text-transform: uppercase;
+   }
+   
+   .char {
+       transform-origin: bottom center;
+       display: inline-block;
+       position: relative;
+       color: transparent;
+   
+       &:before, &:after {
+           content: attr(data-char);
+           position:absolute;
+           top: 0;
+           left: 0;
+       
+           background: #182848; 
+           background: linear-gradient(to bottom, #4b6cb7, #182848);
+            -webkit-background-clip: text;  
+          background-clip: text;
+          color: transparent;
+       
+           transform: translate(0, 100%) rotateX(-90deg);
+           transform-origin: top center;
+           animation: rotateUp 4s infinite linear normal;
+       }
+   
+       &:before{
+           animation-delay: calc(var(--char-index) * 0.285s);
+       }
+       
+       &:after{
+           animation-delay: calc(calc(var(--char-index) * 0.285s) + 2s);
+       }
+   }
+   
+   
+   
+   @media (max-width: 480px) {
+     h1 {
+           font-size: 2.5rem;
+       }
+   }
